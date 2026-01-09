@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CR7 - The Legend</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='images/ronaldo_favicon.png') }}">
+   
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#FFD700',
+                        background: '#0e0e0e',
+                        foreground: '#fafafa',
+                        muted: '#a1a1aa'
+                    },
+                    fontFamily: {
+                        display: ['Anton', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-background text-foreground">
+
+    <div id="scroll-progress"></div>
+
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-6 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="{{ url_for('index') }}" class="group relative cursor-pointer z-50">
+                <span class="text-2xl font-display font-bold tracking-tighter text-white group-hover:text-gold transition-colors">
+                    CR7
+                </span>
+            </a>
+
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="{{ url_for('index') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-gold transition-colors relative group">Home</a>
+                <a href="{{ url_for('legacy') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">Legacy</a>
+                <a href="{{ url_for('stats') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">Stats</a>
+                <a href="{{ url_for('gallery') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">Gallery</a>
+                <a href="{{ url_for('goat') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">The Goat</a>
+                <a href="{{ url_for('contact_us') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">Contact Us</a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden text-white hover:text-gold transition-colors z-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-white/50 hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 18 18"/></svg>
+        </button>
+        <div class="flex flex-col gap-8 text-center">
+            <a href="{{ url_for('index') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Home</a>
+            <a href="{{ url_for('legacy') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Legacy</a>
+            <a href="{{ url_for('stats') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Stats</a>
+            <a href="{{ url_for('gallery') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Gallery</a>
+            <a href="{{ url_for('goat') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">The Goat</a>
+            <a href="{{ url_for('contact_us') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Contact Us</a>
+        </div>
+    </div>
+
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <div id="hero-bg" class="absolute inset-0 z-0 transition-transform duration-75 ease-out">
+            <div class="absolute inset-0 bg-black/30 z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
+            <img src="{{ url_for('static', filename='images/cristiano_ronaldo_silhouette_in_a_stadium_with_dramatic_lighting.png') }}"
+                 alt="Stadium Background"
+                 class="w-full h-full object-cover scale-110">
+        </div>
+       
+        <div class="relative z-20 text-center flex flex-col items-center px-4">
+            <div class="overflow-hidden">
+                <h1 id="hero-text" class="text-[15vw] md:text-[12vw] leading-[0.8] font-display text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 drop-shadow-2xl tracking-tighter animate-in slide-in-from-bottom duration-1000">
+                    RONALDO
+                </h1>
+            </div>
+           
+            <div id="hero-sub" class="mt-6 flex items-center gap-4 fade-in-up delay-500 in-view">
+                <div class="h-[1px] w-8 md:w-16 bg-gold/50"></div>
+                <span class="font-sans text-gold tracking-[0.3em] md:tracking-[0.5em] text-xs md:text-sm uppercase font-medium glow-text">
+                    The Greatest of All Time
+                </span>
+                <div class="h-[1px] w-8 md:w-16 bg-gold/50"></div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4 animate-bounce cursor-pointer" onclick="document.querySelector('.bento-section').scrollIntoView({behavior: 'smooth'})">
+            <span class="text-[10px] tracking-widest uppercase text-white/50">Scroll</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        </div>
+    </section>
+
+    <section class="bento-section py-32 px-6 bg-background relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 text-center fade-in-up">
+                <h2 class="text-4xl md:text-6xl font-display uppercase mb-4">Iconic <span class="text-gold">Moments</span></h2>
+                <div class="h-[1px] w-24 bg-white/20 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-5 md:grid-rows-5 gap-4 h-[200vh] md:h-[120vh]">
+                <div class="bento-item relative group overflow-hidden rounded-sm bg-white/5 border border-white/5 md:col-span-2 md:row-span-2 fade-in-up delay-100">
+                    <div class="bento-overlay absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-20 opacity-80 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <img src="{{ url_for('static', filename='images/close_up_intense_focus_of_cristiano_ronaldo_before_a_free_kick.png') }}" alt="Intense Focus" class="bento-img w-full h-full object-cover scale-100 transition-transform duration-700">
+                    <div class="bento-text absolute bottom-0 left-0 p-6 z-30 translate-y-0 md:translate-y-4 transition-transform duration-500">
+                        <h3 class="font-display text-2xl md:text-3xl text-white uppercase">The Mindset</h3>
+                        <p class="bento-subtitle font-sans text-xs md:text-sm text-gold tracking-widest uppercase opacity-100 md:opacity-0 transition-opacity duration-500 delay-100">Focus & Precision</p>
+                    </div>
+                </div>
+               
+                <div class="bento-item relative group overflow-hidden rounded-sm bg-white/5 border border-white/5 md:col-span-1 md:row-span-2 fade-in-up delay-200">
+                    <div class="bento-overlay absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-20 opacity-80 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <img src="{{ url_for('static', filename='images/vertical_shot_of_ronaldo_sprinting_with_the_ball.png') }}" alt="Sprinting" class="bento-img w-full h-full object-cover scale-100 transition-transform duration-700">
+                    <div class="bento-text absolute bottom-0 left-0 p-6 z-30 translate-y-0 md:translate-y-4 transition-transform duration-500">
+                        <h3 class="font-display text-2xl md:text-3xl text-white uppercase">Speed</h3>
+                        <p class="bento-subtitle font-sans text-xs md:text-sm text-gold tracking-widest uppercase opacity-100 md:opacity-0 transition-opacity duration-500 delay-100">Unstoppable Force</p>
+                    </div>
+                </div>
+               
+                <div class="bento-item relative group overflow-hidden rounded-sm bg-white/5 border border-white/5 md:col-span-1 md:row-span-1 fade-in-up delay-300">
+                    <div class="bento-overlay absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-20 opacity-80 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <img src="{{ url_for('static', filename='images/detail_shot_of_golden_soccer_boots_on_grass.png') }}" alt="Golden Boots" class="bento-img w-full h-full object-cover scale-100 transition-transform duration-700">
+                    <div class="bento-text absolute bottom-0 left-0 p-6 z-30 translate-y-0 md:translate-y-4 transition-transform duration-500">
+                        <h3 class="font-display text-2xl md:text-3xl text-white uppercase">Tools</h3>
+                        <p class="bento-subtitle font-sans text-xs md:text-sm text-gold tracking-widest uppercase opacity-100 md:opacity-0 transition-opacity duration-500 delay-100">Golden Touch</p>
+                    </div>
+                </div>
+
+                <div class="bento-item relative group overflow-hidden rounded-sm bg-white/5 border border-white/5 md:col-span-1 md:row-span-5 fade-in-up delay-400">
+                    <div class="bento-overlay absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-20 opacity-80 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <img src="{{ url_for('static', filename='images/cristiano_ronaldo_doing_his_iconic_siuuu_celebration.png') }}" alt="Siuuu Celebration" class="bento-img w-full h-full object-cover scale-100 transition-transform duration-700">
+                    <div class="bento-text absolute bottom-0 left-0 p-6 z-30 translate-y-0 md:translate-y-4 transition-transform duration-500">
+                        <h3 class="font-display text-2xl md:text-3xl text-white uppercase">Siuuu</h3>
+                        <p class="bento-subtitle font-sans text-xs md:text-sm text-gold tracking-widest uppercase opacity-100 md:opacity-0 transition-opacity duration-500 delay-100">Global Icon</p>
+                    </div>
+                </div>
+
+                <div class="bento-item relative group overflow-hidden rounded-sm bg-white/5 border border-white/5 md:col-span-3 md:row-span-4 fade-in-up delay-500">
+                    <div class="bento-overlay absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-20 opacity-80 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <img src="{{ url_for('static', filename='images/cristiano_ronaldo_lifting_the_champions_league_trophy.png') }}" alt="Lifting Trophy" class="bento-img w-full h-full object-cover scale-100 transition-transform duration-700" style="object-position: 0% 20%;">
+                    <div class="bento-text absolute bottom-0 left-0 p-6 z-30 translate-y-0 md:translate-y-4 transition-transform duration-500">
+                        <h3 class="font-display text-2xl md:text-3xl text-white uppercase">Glory</h3>
+                        <p class="bento-subtitle font-sans text-xs md:text-sm text-gold tracking-widest uppercase opacity-100 md:opacity-0 transition-opacity duration-500 delay-100">Champion of Europe</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-40 relative flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="{{ url_for('static', filename='images/cristiano_ronaldo_silhouette_in_a_stadium_with_dramatic_lighting.png') }}" class="w-full h-full object-cover opacity-20 blur-sm scale-110" alt="">
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background"></div>
+        </div>
+       
+        <div class="relative z-10 max-w-5xl mx-auto text-center px-6 fade-in-up">
+            <div class="mb-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+           
+            <p class="font-display text-4xl md:text-7xl uppercase leading-tight text-white drop-shadow-xl">
+                "I don't have to show anything to anyone. There is <span class="text-gold">nothing to prove</span>."
+            </p>
+           
+            <p class="mt-10 font-sans text-white/60 tracking-[0.5em] uppercase text-sm">
+                Cristiano Ronaldo
+            </p>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/10 text-center bg-black relative z-10">
+        <p class="font-display text-[15vw] md:text-[10vw] leading-none text-white/5 cursor-default select-none hover:text-gold/20 transition-colors duration-500">
+            CR7
+        </p>
+        <div class="mt-8 flex justify-center gap-8 text-sm text-muted-foreground font-sans tracking-widest uppercase">
+            <a href="#" class="hover:text-gold transition-colors">CR7</a>
+        </div>
+        <p class="mt-8 text-xs text-white/20 font-sans">
+            &copy; 2025 Abdullah Ahmer
+        </p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

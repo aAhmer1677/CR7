@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CR7 - The Goat</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/ronaldo_favicon.png') }}">
+   
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#FFD700',
+                        background: '#0e0e0e',
+                        foreground: '#fafafa',
+                        muted: '#a1a1aa'
+                    },
+                    fontFamily: {
+                        display: ['Anton', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-background text-foreground">
+
+    <div id="scroll-progress"></div>
+
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-6 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="{{ url_for('index') }}" class="group relative cursor-pointer z-50">
+                <span class="text-2xl font-display font-bold tracking-tighter text-white group-hover:text-gold transition-colors">
+                    CR7
+                </span>
+            </a>
+
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="{{ url_for('index') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">Home</a>
+                <a href="{{ url_for('legacy') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">Legacy</a>
+                <a href="{{ url_for('stats') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">Stats</a>
+                <a href="{{ url_for('gallery') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">Gallery</a>
+                <a href="{{ url_for('goat') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-gold transition-colors relative group">The Goat</a>
+                <a href="{{ url_for('contact_us') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">Contact Us</a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden text-white hover:text-gold transition-colors z-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-white/50 hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 18 18"/></svg>
+        </button>
+        <div class="flex flex-col gap-8 text-center">
+            <a href="{{ url_for('index') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Home</a>
+            <a href="{{ url_for('legacy') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Legacy</a>
+            <a href="{{ url_for('stats') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Stats</a>
+            <a href="{{ url_for('gallery') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Gallery</a>
+            <a href="{{ url_for('goat') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">The Goat</a>
+            <a href="{{ url_for('contact_us') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Contact Us</a>
+        </div>
+    </div>
+
+    <section id="The GOAT" class="py-32 px-6 relative overflow-hidden min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="relative fade-in-left">
+                <div class="absolute -inset-10 bg-gold/10 blur-[100px] rounded-full"></div>
+                <div class="relative overflow-hidden group">
+                    <img src="{{ url_for('static', filename='images/ronaldo_goat_illustration_design') }}"
+                         alt="Ronaldo Bicycle Kick"
+                         class="relative z-10 w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105">
+                    <div class="absolute inset-0 border border-white/10 z-20 pointer-events-none"></div>
+                </div>
+                <div class="absolute -bottom-6 -right-6 z-30 bg-gold p-8 shadow-2xl shadow-gold/20">
+                    <span class="font-display text-5xl text-black block leading-none">CR7</span>
+                    <span class="font-sans text-[10px] tracking-widest uppercase text-black/60 block mt-1">Legendary</span>
+                </div>
+            </div>
+           
+            <div class="space-y-12 fade-in-right">
+                <div class="overflow-hidden">
+                    <h2 class="text-6xl md:text-8xl font-display uppercase leading-[0.85]">
+                        The <br/> <span class="text-stroke-gold">GOAT</span>
+                    </h2>
+                </div>
+               
+                <div class="space-y-8 text-lg text-muted-foreground font-light leading-relaxed">
+                    <p>
+                        From the streets of Madeira to the grandest stages of world football,
+                        Cristiano Ronaldo has redefined what is possible in the sport. A <span class="text-stroke-gold">GOAT</span> in both the sport and the world.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-40 relative flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="{{ url_for('static', filename='images/cristiano_ronaldo_silhouette_in_a_stadium_with_dramatic_lighting.png') }}" class="w-full h-full object-cover opacity-20 blur-sm scale-110" alt="">
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background"></div>
+        </div>
+       
+        <div class="relative z-10 max-w-5xl mx-auto text-center px-6 fade-in-up">
+            <div class="mb-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+           
+            <p class="font-display text-4xl md:text-7xl uppercase leading-tight text-white drop-shadow-xl">
+                "Talent without working is <span class="text-gold">nothing</span>."
+            </p>
+           
+            <p class="mt-10 font-sans text-white/60 tracking-[0.5em] uppercase text-sm">
+                Cristiano Ronaldo
+            </p>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/10 text-center bg-black relative z-10">
+        <p class="font-display text-[15vw] md:text-[10vw] leading-none text-white/5 cursor-default select-none hover:text-gold/20 transition-colors duration-500">
+            CR7
+        </p>
+        <div class="mt-8 flex justify-center gap-8 text-sm text-muted-foreground font-sans tracking-widest uppercase">
+            <a href="#" class="hover:text-gold transition-colors">CR7</a>
+        </div>
+        <p class="mt-8 text-xs text-white/20 font-sans">
+            &copy; 2025 Abdullah Ahmer
+        </p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

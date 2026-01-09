@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CR7 - Stats</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/ronaldo_favicon.png') }}">
+   
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#FFD700',
+                        background: '#0e0e0e',
+                        foreground: '#fafafa',
+                        muted: '#a1a1aa'
+                    },
+                    fontFamily: {
+                        display: ['Anton', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-background text-foreground">
+
+    <div id="scroll-progress"></div>
+
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-6 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="{{ url_for('index') }}" class="group relative cursor-pointer z-50">
+                <span class="text-2xl font-display font-bold tracking-tighter text-white group-hover:text-gold transition-colors">
+                    CR7
+                </span>
+            </a>
+
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="{{ url_for('index') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">Home</a>
+                <a href="{{ url_for('legacy') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">Legacy</a>
+                <a href="{{ url_for('stats') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-gold transition-colors relative group">Stats</a>
+                <a href="{{ url_for('gallery') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">Gallery</a>
+                <a href="{{ url_for('goat') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">The Goat</a>
+                <a href="{{ url_for('contact_us') }}" class="nav-link text-sm font-sans font-medium uppercase tracking-widest text-white/70 hover:text-gold transition-colors relative group">Contact Us</a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden text-white hover:text-gold transition-colors z-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-white/50 hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 18 18"/></svg>
+        </button>
+        <div class="flex flex-col gap-8 text-center">
+            <a href="{{ url_for('index') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Home</a>
+            <a href="{{ url_for('legacy') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Legacy</a>
+            <a href="{{ url_for('stats') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Stats</a>
+            <a href="{{ url_for('gallery') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Gallery</a>
+            <a href="{{ url_for('goat') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">The Goat</a>
+            <a href="{{ url_for('contact_us') }}" class="mobile-link text-4xl font-display text-white hover:text-gold transition-colors">Contact Us</a>
+        </div>
+    </div>
+
+    <div class="pt-32"></div>
+
+    <section id="stats" class="py-24 px-6 bg-background relative z-10 min-h-screen flex flex-col justify-center">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="mb-16 text-center fade-in-up">
+                <h2 class="text-4xl md:text-6xl font-display uppercase mb-4">The <span class="text-gold">Numbers</span></h2>
+                <div class="h-[1px] w-24 bg-white/20 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-white/10 border border-white/10 overflow-hidden rounded-sm">
+                <div class="stat-card bg-background p-12 flex flex-col items-center justify-center text-center group hover:bg-white/5 transition-all duration-500 cursor-default relative overflow-hidden fade-in-up delay-200" data-target="875">
+                    <div class="absolute inset-0 bg-gold/5 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full blur-3xl"></div>
+                    <div class="mb-6 opacity-50 stat-icon transition-all duration-500 relative z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <h3 class="text-5xl md:text-7xl font-display text-white mb-2 counter" data-target="954">0</h3>
+                    <p class="font-sans text-xs tracking-widest uppercase text-muted-foreground group-hover:text-gold transition-colors relative z-10">Career Goals</p>
+                </div>
+
+                <div class="stat-card bg-background p-12 flex flex-col items-center justify-center text-center group hover:bg-white/5 transition-all duration-500 cursor-default relative overflow-hidden fade-in-up delay-300" data-target="5">
+                    <div class="absolute inset-0 bg-gold/5 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full blur-3xl"></div>
+                    <div class="mb-6 opacity-50 stat-icon transition-all duration-500 relative z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                    </div>
+                    <h3 class="text-5xl md:text-7xl font-display text-white mb-2 counter" data-target="5">0</h3>
+                    <p class="font-sans text-xs tracking-widest uppercase text-muted-foreground group-hover:text-gold transition-colors relative z-10">Ballon d'Or</p>
+                </div>
+
+                <div class="stat-card bg-background p-12 flex flex-col items-center justify-center text-center group hover:bg-white/5 transition-all duration-500 cursor-default relative overflow-hidden fade-in-up delay-400" data-target="35">
+                    <div class="absolute inset-0 bg-gold/5 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full blur-3xl"></div>
+                    <div class="mb-6 opacity-50 stat-icon transition-all duration-500 relative z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.69h-6.382a1 1 0 0 1-.956-.69L7.98 11.5a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/></svg>
+                    </div>
+                    <h3 class="text-5xl md:text-7xl font-display text-white mb-2 counter" data-target="35">0</h3>
+                    <p class="font-sans text-xs tracking-widest uppercase text-muted-foreground group-hover:text-gold transition-colors relative z-10">Major Trophies</p>
+                </div>
+
+                <div class="stat-card bg-background p-12 flex flex-col items-center justify-center text-center group hover:bg-white/5 transition-all duration-500 cursor-default relative overflow-hidden fade-in-up delay-400" data-target="35">
+                    <div class="absolute inset-0 bg-gold/5 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full blur-3xl"></div>
+                    <div class="mb-6 opacity-50 stat-icon transition-all duration-500 relative z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                    </div>
+                    <h3 class="text-5xl md:text-7xl font-display text-white mb-2 counter" data-target="4">0</h3>
+                    <p class="font-sans text-xs tracking-widest uppercase text-muted-foreground group-hover:text-gold transition-colors relative z-10">Golden Boots</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/10 text-center bg-black relative z-10">
+        <p class="font-display text-[15vw] md:text-[10vw] leading-none text-white/5 cursor-default select-none hover:text-gold/20 transition-colors duration-500">
+            CR7
+        </p>
+        <div class="mt-8 flex justify-center gap-8 text-sm text-muted-foreground font-sans tracking-widest uppercase">
+            <a href="#" class="hover:text-gold transition-colors">CR7</a>
+        </div>
+        <p class="mt-8 text-xs text-white/20 font-sans">
+            &copy; 2025 Abdullah Ahmer
+        </p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
